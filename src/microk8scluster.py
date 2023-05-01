@@ -120,6 +120,14 @@ class MicroK8sClusterEvents(ObjectEvents):
     node_added = EventSource(MicroK8sClusterNodeAddedEvent)
     other_node_removed = EventSource(MicroK8sClusterOtherNodeRemovedEvent)
     this_node_removed = EventSource(MicroK8sClusterThisNodeRemovedEvent)
+    
+class MicroK8sClusterUpgradeEvent(MicroK8sClusterEvent):
+    """An event triggered when a MicroK8s cluster upgrade is requested"""
+
+    def __init__(self, upgrade_version):
+        super().__init__()
+        self.upgrade_version = upgrade_version
+
 
 
 class MicroK8sCluster(Object):
