@@ -515,3 +515,11 @@ class MicroK8sCluster(Object):
         subprocess.check_call(["chown", "-R", "ubuntu:ubuntu", config_path])
         logger.info("Wrote kubeconfig to %s", config_path)
         event.set_results({"kubeconfig": config_path})
+        
+    def handle_event(self, event):
+        if isinstance(event, MicroK8sClusterUpgradeEvent):
+            self.upgrade(event.upgrade_version)
+    
+    def upgrade(self, version):
+        # Perform the upgrade logic here
+        pass
